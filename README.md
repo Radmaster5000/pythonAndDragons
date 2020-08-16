@@ -1,4 +1,4 @@
-#Python and Dragons (P%D)
+# Python and Dragons (P&D)
 
 An attempt at making a D&D inspired game in python. 
 
