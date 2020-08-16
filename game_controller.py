@@ -1,4 +1,5 @@
 from classes import *
+from enemyspawner import *
 import random
 	  
 tavern = location((3,3), 'idle', 'Tavern', [], [], [], 'A sleepy tavern.', [])
@@ -17,9 +18,7 @@ for l in range(0, len(tavern.characters)):
 	
 print('there are currently ' + str(len(tavern.list_of_enemies)) + ' enemies in ' + tavern.name)
 
-for i in range(random.randint(3, 6)):
-	zombie = character('enemy', 'zombie', 'undead zombie', 3, 10, 5, 0, [])
-	tavern.list_of_enemies.append(zombie)
+tavern.list_of_enemies = spawn_zombies(random.randint(1, 6))
 	
 print('there are now ' + str(len(tavern.list_of_enemies)) + ' enemies in ' + tavern.name)
 
