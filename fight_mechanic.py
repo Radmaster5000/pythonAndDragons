@@ -6,6 +6,7 @@
 
 import random
 from game_controller import *
+from enemyspawner import *
 
 
 # function that separates the player and enemy attacks
@@ -16,21 +17,45 @@ def fight_mechanic(player, list_of_enemies):
 		current_enemy = list_of_enemies[0]
 		
 		# currently just acts as a prompt for input from the player
+		print("*************************************************")
+		print("*    PUNCH      |     KICK     |     WEAPON     *")
+		print("*************************************************")
 		attack = input('choose your attack: ')
 		
 		# starting to branch player inputs, currently just have one
-		if (attack == '1'):
+		if (attack == 'PUNCH' or attack == 'punch'):
 			# attack currently always hits. Some print statements to check the hits are registering
 			print(current_enemy.health)
-			print('You punch the zombie')
-			current_enemy.health -= 5 
-			print('It now has ' + str(current_enemy.health) + ' health left')
-			
-			# if the player kills the enemy, they are popped from the list. the next enemy then becomes the current enemy
-			if (current_enemy.health <= 0):
-				list_of_enemies.pop(list_of_enemies.index(current_enemy))
+			if (random.randint(1,2) == 1):
+				print('You punch the zombie')
+				current_enemy.health -= 1 
+				print('It now has ' + str(current_enemy.health) + ' health left')
+			else:
+				print('You miss the zombie, it still has ' + str(current_enemy.health) + ' health left')
+
+		elif (attack == 'KICK' or attack == 'kick'):
+			print(current_enemy.health)
+			if (random.randint(1,3) == 1):
+				print('You kick the zombie')
+				current_enemy.health -= 2 
+				print('It now has ' + str(current_enemy.health) + ' health left')
+			else:
+				print('You miss the zombie, it still has ' + str(current_enemy.health) + ' health left')
+
+
+		elif (attack == 'WEAPON' or attack == 'weapon'):	
+			print(current_enemy.health)
+			if (random.randint(1,4) == 1):
+				print('You attack the zombie with your ' + str(player.equipment[0]))
+				current_enemy.health -= 5 
+				print('It now has ' + str(current_enemy.health) + ' health left')
+			else:
+				print('You miss the zombie, it still has ' + str(current_enemy.health) + ' health left')
+		# if the player kills the enemy, they are popped from the list. the next enemy then becomes the current enemy
+		if (current_enemy.health <= 0):
+			list_of_enemies.pop(list_of_enemies.index(current_enemy))
 				
-			print()
+		print()
 		
 		# This is curently just in here to check the enemies' remaining health		
 		for i in range(len(list_of_enemies)):
