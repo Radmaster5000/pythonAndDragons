@@ -21,3 +21,13 @@ class location:
 		self.possible_directions = possible_directions
 		
 
+#########################################
+# CHARACTER LIBRARY
+
+tavern_owner = character('NPC', 'human', 'Tavern Owner', 1000, 1000, 1000, 0, ['large knife'])
+player = character('player character', 'player', 'Adventurer', 1000, 1000, 1000, 1000, ['sword', '10 gold'])
+
+#########################################
+# LOCATION LIBRARY
+
+tavern = location((3,3), 'idle', 'Tavern', [tavern_owner], [], [], 'a sleepy tavern', [])

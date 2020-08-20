@@ -2,28 +2,28 @@ from classes import *
 from enemyspawner import *
 import random
 	  
-tavern = location((3,3), 'idle', 'Tavern', [], [], [], 'A sleepy tavern.', [])
+currentLocation = tavern
+currentLocation.characters.append(player)
+list_of_characters = []
+for l in range(0, len(currentLocation.characters)):
+	list_of_characters.append(currentLocation.characters[l].name)
 
-print(tavern.description)
-print(tavern.characters)
+print("You are in " + currentLocation.description + ". You see the " + ', and '.join(list_of_characters))
 
-player = character('player character', 'player', 'Adventurer', 1000, 1000, 1000, 1000, ['sword', '10 gold'])
-print('an adventurer walks in')
-tavern.characters.append(player)
 
-print(tavern.description)
-print('list of characters: ')
-for l in range(0, len(tavern.characters)):
-	print(tavern.characters[l].name)
+
+print('another adventurer walks in')
+currentLocation.characters.append(player)
+
 	
-print('there are currently ' + str(len(tavern.list_of_enemies)) + ' enemies in ' + tavern.name)
+print('there are currently ' + str(len(currentLocation.list_of_enemies)) + ' enemies in ' + currentLocation.name)
 
-tavern.list_of_enemies = spawn_zombies(random.randint(1, 6))
+currentLocation.list_of_enemies = spawn_zombies(random.randint(1, 6))
 	
-print('there are now ' + str(len(tavern.list_of_enemies)) + ' enemies in ' + tavern.name)
+print('there are now ' + str(len(currentLocation.list_of_enemies)) + ' enemies in ' + currentLocation.name)
 
-for i in range(len(tavern.list_of_enemies)):
-	print(tavern.list_of_enemies[i].name)
+for i in range(len(currentLocation.list_of_enemies)):
+	print(currentLocation.list_of_enemies[i].name)
 
 ######################################################
 # ENEMIES TEST
